@@ -19,7 +19,7 @@ paleta3.style.backgroundColor = 'violet';
 
 const bottom = document.createElement('bottom');
 bottom.innerText = 'Cores aleatórias';
-bottom.id = 'button-random-color'
+bottom.id = 'button-random-color';
 const paiBottom = document.getElementById('bottom-content');
 paiBottom.appendChild(bottom);
 bottom.addEventListener('click', () => {
@@ -33,19 +33,29 @@ bottom.addEventListener('click', () => {
         paleta2: document.getElementById('paleta2').style.backgroundColor,
         paleta3: document.getElementById('paleta3').style.backgroundColor,
     }
-    const stringStatusPaleta = JSON.stringify(statusPaleta)
-    localStorage.setItem('colorPalette', stringStatusPaleta)
+    const stringStatusPaleta = JSON.stringify(statusPaleta);
+    localStorage.setItem('colorPalette', stringStatusPaleta);
     
-})
+});
 
 const loadPallet = () => {
-    const statusPaleta = JSON.parse(localStorage.getItem('colorPalette'))
-    document.getElementById('paleta1').style.backgroundColor = statusPaleta.paleta1
+    const statusPaleta = JSON.parse(localStorage.getItem('colorPalette'));
+    document.getElementById('paleta1').style.backgroundColor = statusPaleta.paleta1;
     document.getElementById('paleta2').style.backgroundColor = statusPaleta.paleta2;
     document.getElementById('paleta3').style.backgroundColor = statusPaleta.paleta3;
-}
+};
 window.onload = () => {
     if (localStorage.getItem('colorPalette')) {
     loadPallet()
     }
 };
+const section = document.createElement('section');
+section.id = 'pixel-board';
+const paiQuadro = document.getElementsByTagName('main')[0];
+paiQuadro.appendChild(section);
+for (let index = 0; index < 25; index += 1) {
+    const divPx = document.createElement('div');
+    divPx.classList.add('pixel');
+    const quadro = document.getElementById('pixel-board');
+    quadro.appendChild(divPx);
+}
