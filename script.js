@@ -49,10 +49,10 @@ window.onload = () => {
     loadPallet()
     }
 };
-const section = document.createElement('section');
-section.id = 'pixel-board';
+const quadroDiv = document.createElement('p');
+quadroDiv.id = 'pixel-board';
 const paiQuadro = document.getElementsByTagName('main')[0];
-paiQuadro.appendChild(section);
+paiQuadro.appendChild(quadroDiv);
 for (let index = 0; index < 25; index += 1) {
     const divPx = document.createElement('div');
     divPx.classList.add('pixel');
