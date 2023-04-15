@@ -19,3 +19,42 @@ div {
   background-color: white;
   margin-bottom: -3px;
 }
+.selected {
+  /* border: solid red 1px; */
+}
+.cor1 {
+    background-color: black;
+}
+.cor2 {
+    background-color: pink;
+}
+.cor3 {
+    background-color: gold;
+}
+.cor4 {
+    background-color: orange;
+}
+.cor5 {
+    background-color: red;
+}
+.cor6 {
+    background-color: darkred;
+}
+.cor7 {
+    background-color: purple;
+}
+.cor8 {
+    background-color: navy;
+}
+.cor9 {
+    background-color: blue;
+}
+.cor10 {
+    background-color: lightblue;
+}
+.cor11 {
+    background-color: green;
+}
+.cor12 {
+    background-color: darkgrey;
+}

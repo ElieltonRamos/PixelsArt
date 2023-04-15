@@ -6,13 +6,15 @@ for (let index = 0; index < 4; index += 1) {
 }
 
 const paletaCor = document.getElementsByClassName('color');
+paletaCor[0].id = 'paleta0';
 paletaCor[1].id = 'paleta1';
 paletaCor[2].id = 'paleta2';
 paletaCor[3].id = 'paleta3';
 let paleta1 = document.getElementById('paleta1');
 let paleta2 = document.getElementById('paleta2');
 let paleta3 = document.getElementById('paleta3')
-paletaCor[0].style.backgroundColor = 'black';;
+paleta0.style.backgroundColor = 'black';
+paleta0.classList.add('selected');
 paleta1.style.backgroundColor = 'blue';
 paleta2.style.backgroundColor = 'green';
 paleta3.style.backgroundColor = 'violet';
@@ -23,7 +25,7 @@ bottom.id = 'button-random-color';
 const paiBottom = document.getElementById('bottom-content');
 paiBottom.appendChild(bottom);
 bottom.addEventListener('click', () => {
-    const cores = ["pink", "gold", "orange", "red", "darkred", "purple", "navy", "blue", "lightblue", "forestgreen", "darkgrey", "yellow"];
+    const cores = ["pink", "green", "orange", "red", "darkred", "purple", "navy", "blue", "lightblue", "forestgreen", "darkgrey", "yellow"];
     paleta1.style.backgroundColor = cores[Math.ceil(Math.random() * 12)];
     paleta2.style.backgroundColor = cores[Math.ceil(Math.random() * 12)];
     paleta3.style.backgroundColor = cores[Math.ceil(Math.random() * 12)];
@@ -58,4 +60,22 @@ for (let index = 0; index < 25; index += 1) {
     divPx.classList.add('pixel');
     const quadro = document.getElementById('pixel-board');
     quadro.appendChild(divPx);
-}
+};
+function selected (event) {
+    const selected = document.querySelectorAll('.color');
+    for (let elemento of selected) {
+        elemento.classList.remove('selected');
+    }
+    event.target.classList.add('selected');
+    let corSelecionada = event.srcElement.attributes[2].nodeValue
+    console.log(corSelecionada)
+
+} 
+paleta0.addEventListener('click', selected)
+paleta1.addEventListener('click', selected)
+paleta2.addEventListener('click', selected)
+paleta3.addEventListener('click', selected)
+
+    // corSelecionada = event.srcElement.attributes[2].nodeValue
+    // let corSelecionada = 'background-color: black;'
+    // let classe = event.srcElement.attributes[0].nodeValue
