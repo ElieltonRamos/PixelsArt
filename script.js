@@ -67,14 +67,22 @@ function selected (event) {
         elemento.classList.remove('selected');
     }
     event.target.classList.add('selected');
-    let corSelecionada = event.srcElement.attributes[2].nodeValue
-    console.log(corSelecionada)
-
-} 
+};
 paleta0.addEventListener('click', selected)
 paleta1.addEventListener('click', selected)
 paleta2.addEventListener('click', selected)
 paleta3.addEventListener('click', selected)
+
+function pintar (event) {
+    let cor = document.getElementsByClassName('selected')[0]
+    let corSelecionada = cor.style.backgroundColor
+    let div = event.target
+    div.setAttribute('style', `background-color: ${corSelecionada}`)
+}
+const quadroPixel = document.getElementsByClassName('pixel')
+for (let element of quadroPixel) {
+    element.addEventListener('click', pintar)
+}
 
     // corSelecionada = event.srcElement.attributes[2].nodeValue
     // let corSelecionada = 'background-color: black;'

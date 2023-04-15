@@ -20,7 +20,7 @@ div {
   margin-bottom: -3px;
 }
 .selected {
-  /* border: solid red 1px; */
+  border: solid black 1px;
 }
 .cor1 {
     background-color: black;
