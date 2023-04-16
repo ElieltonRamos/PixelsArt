@@ -24,16 +24,12 @@ bottom.innerText = 'Cores aleatórias';
 bottom.id = 'button-random-color';
 const paiBottom = document.getElementById('bottom-content');
 paiBottom.appendChild(bottom);
-let pixels = document.getElementsByClassName('pixel');
 bottom.addEventListener('click', () => {
     const cores = ["pink", "green", "orange", "red", "darkred", "purple", "navy", "blue", "lightblue", "forestgreen", "darkgrey", "yellow"];
     paleta1.style.backgroundColor = cores[Math.ceil(Math.random() * 12)];
     paleta2.style.backgroundColor = cores[Math.ceil(Math.random() * 12)];
     paleta3.style.backgroundColor = cores[Math.ceil(Math.random() * 12)];
 
-    let statusPixels = {
-        //criar um objeto e colocar os pixels pintados dentro
-    }
     const statusPaleta = {
         paleta1: document.getElementById('paleta1').style.backgroundColor,
         paleta2: document.getElementById('paleta2').style.backgroundColor,
@@ -77,16 +73,27 @@ paleta1.addEventListener('click', selected)
 paleta2.addEventListener('click', selected)
 paleta3.addEventListener('click', selected)
 
-function pintar (event) {
-    let cor = document.getElementsByClassName('selected')[0]
-    let corSelecionada = cor.style.backgroundColor
-    let div = event.target
-    div.setAttribute('style', `background-color: ${corSelecionada}`)
-}
 const quadroPixel = document.getElementsByClassName('pixel')
 for (let element of quadroPixel) {
-    element.addEventListener('click', pintar)
+    element.addEventListener('click', (event) => {
+        let cor = document.getElementsByClassName('selected')[0]
+        let corSelecionada = cor.style.backgroundColor
+        let div = event.target
+        div.setAttribute('style', `background-color: ${corSelecionada}`)
+    });
 };
+//salvar desenho
+// for (let px of quadroPixel) {
+//     px.addEventListener('click', () => {
+//         const statusDesenho = {};
+//         for (let index = 0; index < 25; index += 1){
+//             statusDesenho.pixel[index] = 'undefined'
+//         }
+//         const stringStatusDesenho = JSON.stringify(statusDesenho);
+//         localStorage.setItem('pixelBoard', stringStatusDesenho);
+//     })
+// }
+
 const bottomReset = document.createElement('bottom');
 bottomReset.id = 'clear-board';
 bottomReset.innerText = 'Limpar';
