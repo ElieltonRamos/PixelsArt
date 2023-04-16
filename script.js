@@ -82,8 +82,14 @@ function pintar (event) {
 const quadroPixel = document.getElementsByClassName('pixel')
 for (let element of quadroPixel) {
     element.addEventListener('click', pintar)
-}
+};
+const bottomReset = document.createElement('bottom');
+bottomReset.id = 'clear-board';
+bottomReset.innerText = 'Limpar';
+paiBottom.appendChild(bottomReset);
 
-    // corSelecionada = event.srcElement.attributes[2].nodeValue
-    // let corSelecionada = 'background-color: black;'
-    // let classe = event.srcElement.attributes[0].nodeValue
+bottomReset.addEventListener('click', () => {
+    for (let elemento of quadroPixel) {
+        elemento.removeAttribute('style', 'background-color');
+    }
+})
