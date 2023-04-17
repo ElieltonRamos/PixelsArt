@@ -46,11 +46,7 @@ const loadPallet = () => {
     document.getElementById('paleta2').style.backgroundColor = statusPaleta.paleta2;
     document.getElementById('paleta3').style.backgroundColor = statusPaleta.paleta3;
 };
-window.onload = () => {
-    if (localStorage.getItem('colorPalette')) {
-    loadPallet()
-    }
-};
+
 const quadroDiv = document.createElement('p');
 quadroDiv.id = 'pixel-board';
 const paiQuadro = document.getElementsByTagName('main')[0];
@@ -58,8 +54,26 @@ paiQuadro.appendChild(quadroDiv);
 for (let index = 0; index < 25; index += 1) {
     const divPx = document.createElement('div');
     divPx.classList.add('pixel');
+    divPx.id = 'pixel' + index;
     const quadro = document.getElementById('pixel-board');
     quadro.appendChild(divPx);
+};
+
+function loadPixels () {
+    const pixels = document.getElementsByClassName('pixel')
+    const statusDesenho = JSON.parse(localStorage.getItem('pixelBoard'))
+    for (let index = 0; index < pixels.length; index += 1) {
+        const idPixel = 'pixel' + index
+        pixels[index].style.backgroundColor = statusDesenho[idPixel]
+    }
+}
+
+window.onload = () => {
+    if (localStorage.getItem('colorPalette')) {
+    loadPallet()
+    } if (localStorage.getItem('pixelBoard')){
+    loadPixels()
+    }
 };
 function selected (event) {
     const selected = document.querySelectorAll('.color');
@@ -83,16 +97,17 @@ for (let element of quadroPixel) {
     });
 };
 //salvar desenho
-// for (let px of quadroPixel) {
-//     px.addEventListener('click', () => {
-//         const statusDesenho = {};
-//         for (let index = 0; index < 25; index += 1){
-//             statusDesenho.pixel[index] = 'undefined'
-//         }
-//         const stringStatusDesenho = JSON.stringify(statusDesenho);
-//         localStorage.setItem('pixelBoard', stringStatusDesenho);
-//     })
-// }
+const statusDesenho = {};
+for (let px of quadroPixel) {
+    px.addEventListener('click', () => {
+        for (let index = 0; index < quadroPixel.length; index += 1){
+            const idPixel = 'pixel' + index;
+            statusDesenho[idPixel] = quadroPixel[index].style.backgroundColor
+        }
+        const stringStatusDesenho = JSON.stringify(statusDesenho);
+        localStorage.setItem('pixelBoard', stringStatusDesenho);
+    })
+}
 
 const bottomReset = document.createElement('bottom');
 bottomReset.id = 'clear-board';
