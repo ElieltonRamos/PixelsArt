@@ -52,6 +52,7 @@ const paiInput = document.getElementById('bottom-content');
 paiInput.appendChild(inputPixels)
 inputPixels.type = 'number'
 inputPixels.min = '1'
+inputPixels.max = '50'
 inputPixels.id = 'board-size'
 const gerarPixels = document.createElement('button')
 gerarPixels.innerText = 'VQV'
@@ -73,13 +74,20 @@ for (let index = 0; index < 25; index += 1) {
 };
 
 gerarPixels.addEventListener('click', () => {
-    if (inputPixels.value === '') {
+    let tamanhoPixels = inputPixels.value
+    if (tamanhoPixels === '') {
         alert('Board inválido!')
     }
+    if (inputPixels.value < 5) {
+        tamanhoPixels = 5
+    }
+    if (inputPixels.value > 50) {
+        tamanhoPixels = 50
+    }
     quadroDiv.innerHTML = ''
-    quadroDiv.style.width = `${(inputPixels.value * 42)}px`
-    quadroDiv.style.height = `${(inputPixels.value * 42)}px`
-    for (let index = 0; index < (inputPixels.value * inputPixels.value); index += 1) {
+    quadroDiv.style.width = `${(tamanhoPixels * 42)}px`
+    quadroDiv.style.height = `${(tamanhoPixels * 42)}px`
+    for (let index = 0; index < (tamanhoPixels * tamanhoPixels); index += 1) {
         const divPx = document.createElement('div');
         divPx.classList.add('pixel');
         divPx.id = 'pixel' + index;
