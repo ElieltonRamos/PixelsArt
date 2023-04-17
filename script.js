@@ -19,7 +19,7 @@ paleta1.style.backgroundColor = 'blue';
 paleta2.style.backgroundColor = 'green';
 paleta3.style.backgroundColor = 'violet';
 
-const bottom = document.createElement('bottom');
+const bottom = document.createElement('button');
 bottom.innerText = 'Cores aleatórias';
 bottom.id = 'button-random-color';
 const paiBottom = document.getElementById('bottom-content');
@@ -47,10 +47,23 @@ const loadPallet = () => {
     document.getElementById('paleta3').style.backgroundColor = statusPaleta.paleta3;
 };
 
+const inputPixels = document.createElement('input');
+const paiInput = document.getElementById('bottom-content');
+paiInput.appendChild(inputPixels)
+inputPixels.type = 'number'
+inputPixels.min = '1'
+inputPixels.id = 'board-size'
+const gerarPixels = document.createElement('button')
+gerarPixels.innerText = 'VQV'
+gerarPixels.id = 'generate-board'
+paiInput.appendChild(gerarPixels)
+
 const quadroDiv = document.createElement('p');
 quadroDiv.id = 'pixel-board';
 const paiQuadro = document.getElementsByTagName('main')[0];
 paiQuadro.appendChild(quadroDiv);
+quadroDiv.style.width = '210px'
+quadroDiv.style.height = '210px'
 for (let index = 0; index < 25; index += 1) {
     const divPx = document.createElement('div');
     divPx.classList.add('pixel');
@@ -58,6 +71,22 @@ for (let index = 0; index < 25; index += 1) {
     const quadro = document.getElementById('pixel-board');
     quadro.appendChild(divPx);
 };
+
+gerarPixels.addEventListener('click', () => {
+    if (inputPixels.value === '') {
+        alert('Board inválido!')
+    }
+    quadroDiv.innerHTML = ''
+    quadroDiv.style.width = `${(inputPixels.value * 42)}px`
+    quadroDiv.style.height = `${(inputPixels.value * 42)}px`
+    for (let index = 0; index < (inputPixels.value * inputPixels.value); index += 1) {
+        const divPx = document.createElement('div');
+        divPx.classList.add('pixel');
+        divPx.id = 'pixel' + index;
+        const quadro = document.getElementById('pixel-board');
+        quadro.appendChild(divPx);
+    };
+})
 
 function loadPixels () {
     const pixels = document.getElementsByClassName('pixel')
@@ -108,8 +137,7 @@ for (let px of quadroPixel) {
         localStorage.setItem('pixelBoard', stringStatusDesenho);
     })
 }
-
-const bottomReset = document.createElement('bottom');
+const bottomReset = document.createElement('button');
 bottomReset.id = 'clear-board';
 bottomReset.innerText = 'Limpar';
 paiBottom.appendChild(bottomReset);

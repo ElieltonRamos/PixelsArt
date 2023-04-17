@@ -5,11 +5,6 @@
   display: inline-block;
   margin-left: 10px;
 }
-p {
-  /* border: solid black 1px; */
-  width: 240px;
-  height: 240px;
-}
 div {
   border: solid black 1px;
   display: inline-block;
@@ -22,39 +17,17 @@ div {
 .selected {
   border: solid black 1px;
 }
-.cor1 {
-    background-color: black;
+#clear-board {
+    margin-left: 50px;
+    border: solid black 1px;
 }
-.cor2 {
-    background-color: pink;
+#button-random-color {
+    margin-top: 10px;
+    margin-right: 30px;
+    border: solid black 1px;
 }
-.cor3 {
-    background-color: gold;
-}
-.cor4 {
-    background-color: orange;
-}
-.cor5 {
-    background-color: red;
-}
-.cor6 {
-    background-color: darkred;
-}
-.cor7 {
-    background-color: purple;
-}
-.cor8 {
-    background-color: navy;
-}
-.cor9 {
-    background-color: blue;
-}
-.cor10 {
-    background-color: lightblue;
-}
-.cor11 {
-    background-color: green;
-}
-.cor12 {
-    background-color: darkgrey;
+#board-size {
+    border: solid black 1px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
