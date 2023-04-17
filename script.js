@@ -65,7 +65,15 @@ const paiQuadro = document.getElementsByTagName('main')[0];
 paiQuadro.appendChild(quadroDiv);
 quadroDiv.style.width = '210px'
 quadroDiv.style.height = '210px'
-for (let index = 0; index < 25; index += 1) {
+let statusTamanho = 25;
+if (localStorage.getItem('boardSize')) {
+   let stringStatusTamanho = JSON.parse(localStorage.getItem('boardSize'))
+   quadroDiv.style.width = stringStatusTamanho.statusWidth
+   quadroDiv.style.height = stringStatusTamanho.statusHeight
+   statusTamanho = stringStatusTamanho.statusTamanho
+}
+
+for (let index = 0; index < statusTamanho; index += 1) {
     const divPx = document.createElement('div');
     divPx.classList.add('pixel');
     divPx.id = 'pixel' + index;
@@ -94,6 +102,13 @@ gerarPixels.addEventListener('click', () => {
         const quadro = document.getElementById('pixel-board');
         quadro.appendChild(divPx);
     };
+    const statusTamanho = {
+        statusTamanho: tamanhoPixels * tamanhoPixels,
+        statusWidth: quadroDiv.style.width,
+        statusHeight: quadroDiv.style.height,
+    }
+    const stringStatusTamanho = JSON.stringify(statusTamanho)
+    localStorage.setItem('boardSize', stringStatusTamanho)
 })
 
 function loadPixels () {
